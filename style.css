@@ -36,12 +36,7 @@ body {
     object-fit: contain;
     display: block;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
     flex-shrink: 0;
-}
-
-.invitation-image:hover {
-    transform: scale(1.02);
 }
 
 /* Para pantallas muy pequeñas */
