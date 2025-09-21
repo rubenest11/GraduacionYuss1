@@ -30,12 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const yPercent = (y / rect.height) * 100;
             
             // Área para el botón de WhatsApp (confirmar asistencia)
-            // Aproximadamente en el área del botón de confirmar asistencia
-            if (yPercent >= 75 && yPercent <= 90 && xPercent >= 20 && xPercent <= 80) {
+            // Área específica donde dice "wa.link" en la imagen
+            if (yPercent >= 85 && yPercent <= 95 && xPercent >= 30 && xPercent <= 70) {
                 window.open('https://wa.link/pkl1xt', '_blank');
             }
             // Área donde podría estar el enlace de maps
-            else if (yPercent >= 50 && yPercent <= 75) {
+            else if (yPercent >= 60 && yPercent <= 80) {
                 window.open('https://maps.app.goo.gl/8oxnAQYhqXUBoPgd9', '_blank');
             }
         });
@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const yPercent = (y / rect.height) * 100;
             
             // Área del botón de WhatsApp o área de maps
-            if ((yPercent >= 75 && yPercent <= 90 && xPercent >= 20 && xPercent <= 80) || 
-                (yPercent >= 50 && yPercent <= 75)) {
+            if ((yPercent >= 85 && yPercent <= 95 && xPercent >= 30 && xPercent <= 70) || 
+                (yPercent >= 60 && yPercent <= 80)) {
                 image.style.cursor = 'pointer';
             } else {
                 image.style.cursor = 'default';
