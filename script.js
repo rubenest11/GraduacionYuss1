@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Área para Maps - zona media
             if (yPercent >= 60 && yPercent <= 80) {
                 console.log('Abriendo Maps');
-                window.open('https://maps.app.goo.gl/8oxnAQYhqXUBoPgd9', '_blank');
+                window.open('https://maps.app.goo.gl/4CC6RET6J7MVb6CS6', '_blank');
                 return;
             }
         });
