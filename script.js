@@ -45,6 +45,46 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Funcionalidad para el enlace de maps
+document.addEventListener('DOMContentLoaded', function() {
+    // Agregar evento de clic a todas las imágenes para detectar clics en el área de maps
+    const images = document.querySelectorAll('.invitation-image');
+    
+    images.forEach(image => {
+        image.addEventListener('click', function(e) {
+            // Obtener las coordenadas del clic relativas a la imagen
+            const rect = image.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Calcular porcentajes relativos a la imagen
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+            
+            // Área aproximada donde podría estar el enlace de maps (ajustar según sea necesario)
+            // Estas coordenadas pueden necesitar ajuste según dónde esté exactamente el enlace en las imágenes
+            if (xPercent >= 20 && xPercent <= 80 && yPercent >= 60 && yPercent <= 90) {
+                window.open('https://maps.app.goo.gl/8oxnAQYhqXUBoPgd9', '_blank');
+            }
+        });
+        
+        // Cambiar cursor cuando esté sobre el área de maps
+        image.addEventListener('mousemove', function(e) {
+            const rect = image.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+            
+            if (xPercent >= 20 && xPercent <= 80 && yPercent >= 60 && yPercent <= 90) {
+                image.style.cursor = 'pointer';
+            } else {
+                image.style.cursor = 'default';
+            }
+        });
+    });
+});
+
 // Ajustar imagen al redimensionar ventana
 window.addEventListener('resize', function() {
     const images = document.querySelectorAll('.invitation-image');
