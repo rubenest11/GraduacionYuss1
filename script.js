@@ -13,9 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Funcionalidad para el enlace de maps
+// Funcionalidad para los enlaces
 document.addEventListener('DOMContentLoaded', function() {
-    // Agregar evento de clic a todas las imágenes
     const images = document.querySelectorAll('.invitation-image');
     
     images.forEach(image => {
@@ -29,14 +28,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const xPercent = (x / rect.width) * 100;
             const yPercent = (y / rect.height) * 100;
             
-            // Área para el botón de WhatsApp (confirmar asistencia)
-            // Área específica donde dice "wa.link" en la imagen
-            if (yPercent >= 85 && yPercent <= 95 && xPercent >= 30 && xPercent <= 70) {
+            console.log('Clic en:', xPercent.toFixed(1) + '%, ' + yPercent.toFixed(1) + '%');
+            
+            // Área para el texto "wa.link" (WhatsApp) - parte inferior
+            if (yPercent >= 85 && yPercent <= 95 && xPercent >= 20 && xPercent <= 80) {
+                console.log('Abriendo WhatsApp');
                 window.open('https://wa.link/pkl1xt', '_blank');
+                return;
             }
-            // Área donde podría estar el enlace de maps
-            else if (yPercent >= 60 && yPercent <= 80) {
+            
+            // Área para Maps - zona media
+            if (yPercent >= 60 && yPercent <= 80) {
+                console.log('Abriendo Maps');
                 window.open('https://maps.app.goo.gl/8oxnAQYhqXUBoPgd9', '_blank');
+                return;
             }
         });
         
@@ -48,8 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const xPercent = (x / rect.width) * 100;
             const yPercent = (y / rect.height) * 100;
             
-            // Área del botón de WhatsApp o área de maps
-            if ((yPercent >= 85 && yPercent <= 95 && xPercent >= 30 && xPercent <= 70) || 
+            // Área del texto "wa.link" o área de maps
+            if ((yPercent >= 85 && yPercent <= 95 && xPercent >= 20 && xPercent <= 80) || 
                 (yPercent >= 60 && yPercent <= 80)) {
                 image.style.cursor = 'pointer';
             } else {
