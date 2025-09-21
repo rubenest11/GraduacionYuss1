@@ -29,20 +29,28 @@ document.addEventListener('DOMContentLoaded', function() {
             const xPercent = (x / rect.width) * 100;
             const yPercent = (y / rect.height) * 100;
             
-            // Área donde podría estar el enlace de maps (ajustable)
-            // Probando con un área más amplia para asegurar que funcione
-            if (yPercent >= 50) { // Cualquier clic en la mitad inferior de cualquier imagen
+            // Área para el botón de WhatsApp (confirmar asistencia)
+            // Aproximadamente en el área del botón de confirmar asistencia
+            if (yPercent >= 75 && yPercent <= 90 && xPercent >= 20 && xPercent <= 80) {
+                window.open('https://wa.link/pkl1xt', '_blank');
+            }
+            // Área donde podría estar el enlace de maps
+            else if (yPercent >= 50 && yPercent <= 75) {
                 window.open('https://maps.app.goo.gl/8oxnAQYhqXUBoPgd9', '_blank');
             }
         });
         
-        // Cambiar cursor en la mitad inferior de las imágenes
+        // Cambiar cursor en las áreas clickeables
         image.addEventListener('mousemove', function(e) {
             const rect = image.getBoundingClientRect();
+            const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
+            const xPercent = (x / rect.width) * 100;
             const yPercent = (y / rect.height) * 100;
             
-            if (yPercent >= 50) {
+            // Área del botón de WhatsApp o área de maps
+            if ((yPercent >= 75 && yPercent <= 90 && xPercent >= 20 && xPercent <= 80) || 
+                (yPercent >= 50 && yPercent <= 75)) {
                 image.style.cursor = 'pointer';
             } else {
                 image.style.cursor = 'default';
