@@ -30,17 +30,17 @@ document.addEventListener('DOMContentLoaded', function() {
             
             console.log('Clic en:', xPercent.toFixed(1) + '%, ' + yPercent.toFixed(1) + '%');
             
-            // Área para el texto "wa.link" (WhatsApp) - parte inferior
-            if (yPercent >= 85 && yPercent <= 95 && xPercent >= 20 && xPercent <= 80) {
-                console.log('Abriendo WhatsApp');
-                window.open('https://wa.link/pkl1xt', '_blank');
+            // Área para Maps - zona superior/media (donde aparece el ícono de ubicación)
+            if (yPercent >= 30 && yPercent <= 60 && xPercent >= 10 && xPercent <= 90) {
+                console.log('Abriendo Maps');
+                window.open('https://maps.app.goo.gl/4CC6RET6J7MVb6CS6', '_blank');
                 return;
             }
             
-            // Área para Maps - zona media
-            if (yPercent >= 60 && yPercent <= 80) {
-                console.log('Abriendo Maps');
-                window.open('https://maps.app.goo.gl/4CC6RET6J7MVb6CS6', '_blank');
+            // Área para WhatsApp - zona inferior (donde aparece "Confirma tu asistencia")
+            if (yPercent >= 75 && yPercent <= 95 && xPercent >= 10 && xPercent <= 90) {
+                console.log('Abriendo WhatsApp');
+                window.open('https://wa.link/pkl1xt', '_blank');
                 return;
             }
         });
@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const xPercent = (x / rect.width) * 100;
             const yPercent = (y / rect.height) * 100;
             
-            // Área del texto "wa.link" o área de maps
-            if ((yPercent >= 85 && yPercent <= 95 && xPercent >= 20 && xPercent <= 80) || 
-                (yPercent >= 60 && yPercent <= 80)) {
+            // Área de Maps (zona superior/media) o área de WhatsApp (zona inferior)
+            if ((yPercent >= 30 && yPercent <= 60 && xPercent >= 10 && xPercent <= 90) || 
+                (yPercent >= 75 && yPercent <= 95 && xPercent >= 10 && xPercent <= 90)) {
                 image.style.cursor = 'pointer';
             } else {
                 image.style.cursor = 'default';
