@@ -1,90 +1,39 @@
-// Modal functionality
-const modal = document.getElementById('imageModal');
-const modalImg = document.getElementById('modalImage');
-const modalCaption = document.getElementById('modalCaption');
-const closeBtn = document.getElementsByClassName('close')[0];
-
-// Add click event to all images
+// Prevenir scroll en la página
 document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('.image-card img');
+    // Prevenir scroll con rueda del mouse
+    document.addEventListener('wheel', function(e) {
+        e.preventDefault();
+    }, { passive: false });
     
-    images.forEach(img => {
-        img.addEventListener('click', function() {
-            modal.style.display = 'block';
-            modalImg.src = this.src;
-            modalCaption.innerHTML = this.alt;
-            
-            // Add fade in animation
-            modal.style.opacity = '0';
-            setTimeout(() => {
-                modal.style.opacity = '1';
-            }, 10);
-        });
+    // Prevenir scroll con teclas
+    document.addEventListener('keydown', function(e) {
+        // Prevenir teclas de navegación
+        if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'PageUp', 'PageDown', 'Home', 'End'].includes(e.code)) {
+            e.preventDefault();
+        }
     });
-});
-
-// Close modal when clicking the X
-closeBtn.addEventListener('click', function() {
-    closeModal();
-});
-
-// Close modal when clicking outside the image
-modal.addEventListener('click', function(e) {
-    if (e.target === modal) {
-        closeModal();
-    }
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-        closeModal();
-    }
-});
-
-function closeModal() {
-    modal.style.opacity = '0';
+    
+    // Prevenir scroll táctil
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+    
+    // Animación suave de entrada
+    const image = document.querySelector('.invitation-image');
+    image.style.opacity = '0';
+    image.style.transform = 'scale(0.9)';
+    
     setTimeout(() => {
-        modal.style.display = 'none';
-    }, 300);
-}
-
-// Smooth scroll animation for page load
-window.addEventListener('load', function() {
-    const cards = document.querySelectorAll('.image-card');
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(50px)';
-        
-        setTimeout(() => {
-            card.style.transition = 'all 0.6s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, index * 100);
-    });
+        image.style.transition = 'opacity 1s ease, transform 1s ease';
+        image.style.opacity = '1';
+        image.style.transform = 'scale(1)';
+    }, 100);
 });
 
-// Add hover sound effect (optional)
-document.querySelectorAll('.image-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        // You can add sound effects here if desired
-        this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-    });
+// Ajustar imagen al redimensionar ventana
+window.addEventListener('resize', function() {
+    const image = document.querySelector('.invitation-image');
+    // Forzar recálculo del tamaño
+    image.style.maxWidth = '100vw';
+    image.style.maxHeight = '100vh';
 });
-
-// Lazy loading enhancement
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.classList.add('loaded');
-                observer.unobserve(img);
-            }
-        });
-    });
-
-    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-        imageObserver.observe(img);
-    });
-}
