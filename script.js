@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             image.style.transition = 'opacity 1s ease, transform 1s ease';
             image.style.opacity = '1';
             image.style.transform = 'scale(1)';
-        }, 100 + (index * 300));
+        }, 100 + (index * 250));
     });
     
     // Scroll suave entre imágenes
